@@ -9,7 +9,7 @@ public class Logic {
         welcomeUser();
     }
 
-    public void createEmptyBoard() {
+    private void createEmptyBoard() {
         connectFourBoard = new Spaces[6][7];
         for(int i = 0; i < connectFourBoard.length; i++) {
             for(int j = 0; j < connectFourBoard[0].length; j++) {
@@ -17,7 +17,11 @@ public class Logic {
             }
         }
     }
-    public void welcomeUser() {
+
+    public void printConnectFourBoard() {
+
+    }
+    private void welcomeUser() {
         System.out.println("Welcome to Connect 4!");
         createEmptyBoard();
     }
