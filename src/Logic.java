@@ -19,5 +19,6 @@ public class Logic {
     }
     public void welcomeUser() {
         System.out.println("Welcome to Connect 4!");
+        createEmptyBoard();
     }
 }
