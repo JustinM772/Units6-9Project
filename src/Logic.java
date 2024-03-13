@@ -13,7 +13,7 @@ public class Logic {
         connectFourBoard = new Spaces[6][7];
         for(int i = 0; i < connectFourBoard.length; i++) {
             for(int j = 0; j < connectFourBoard[0].length; j++) {
-
+                connectFourBoard[i][j] = new Spaces(i, j);
             }
         }
     }
