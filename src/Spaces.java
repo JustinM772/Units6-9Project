@@ -3,7 +3,7 @@ public class Spaces {
     private int row;
     private int col;
     public Spaces(int row, int col) {
-        symbol = "⬜";
+        symbol = "\u001B[44m ⚫ \u001B[0m";
         this.row = row;
         this.col = col;
     }
