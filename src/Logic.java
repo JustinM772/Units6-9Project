@@ -18,7 +18,7 @@ public class Logic {
         }
     }
 
-    public void printConnectFourBoard() {
+    private void printConnectFourBoard() {
         for (int i = 0; i < connectFourBoard.length; i++) {
             for (int j = 0; j < connectFourBoard[0].length; j++) {
                 System.out.print(connectFourBoard[i][j].getSymbol());
@@ -283,6 +283,7 @@ public class Logic {
             }
             if (checkIfOver()) {
                 gameOver = true;
+                printConnectFourBoard();
             }
         }
         System.out.println("Do you want to play again?(y/n)");
