@@ -32,12 +32,14 @@ public class Logic {
         play();
     }
     private boolean checkIfOver() {
-        boolean over = false;
         for (int i = 0; i < connectFourBoard.length; i++) {
             String symbol = connectFourBoard[i][0].getSymbol();
             String symbol2 = connectFourBoard[i][0].getSymbol();
             for (int j = 1; j < 4; j++) {
                 symbol2 = connectFourBoard[i][j].getSymbol();
+                if (!(symbol2.equals(symbol))) {
+                    break;
+                }
             }
             if (symbol.equals(symbol2)) {
                 return true;
@@ -46,6 +48,9 @@ public class Logic {
             symbol2 = connectFourBoard[i][1].getSymbol();
             for (int j = 2; j < 5; j++) {
                 symbol2 = connectFourBoard[i][j].getSymbol();
+                if (!(symbol2.equals(symbol))) {
+                    break;
+                }
             }
             if (symbol.equals(symbol2)) {
                 return true;
@@ -54,6 +59,9 @@ public class Logic {
             symbol2 = connectFourBoard[i][2].getSymbol();
             for (int j = 3; j < 6; j++) {
                 symbol2 = connectFourBoard[i][j].getSymbol();
+                if (!(symbol2.equals(symbol))) {
+                    break;
+                }
             }
             if (symbol.equals(symbol2)) {
                 return true;
@@ -62,11 +70,169 @@ public class Logic {
             symbol2 = connectFourBoard[i][3].getSymbol();
             for (int j = 4; j < 7; j++) {
                 symbol2 = connectFourBoard[i][j].getSymbol();
+                if (!(symbol2.equals(symbol))) {
+                    break;
+                }
             }
             if (symbol.equals(symbol2)) {
                 return true;
             }
         }
+        for (int j = 0; j < connectFourBoard[0].length; j++) {
+            String symbol = connectFourBoard[0][j].getSymbol();
+            String symbol2 = connectFourBoard[0][j].getSymbol();
+            for (int i = 1; i < 4; i++) {
+                symbol2 = connectFourBoard[i][j].getSymbol();
+                if (!(symbol2.equals(symbol))) {
+                    break;
+                }
+            }
+            if (symbol.equals(symbol2)) {
+                return true;
+            }
+            symbol = connectFourBoard[1][j].getSymbol();
+            symbol2 = connectFourBoard[1][j].getSymbol();
+            for (int i = 2; i < 5; i++) {
+                symbol2 = connectFourBoard[i][j].getSymbol();
+                if (!(symbol2.equals(symbol))) {
+                    break;
+                }
+            }
+            if (symbol.equals(symbol2)) {
+                return true;
+            }
+            symbol = connectFourBoard[2][j].getSymbol();
+            symbol2 = connectFourBoard[2][j].getSymbol();
+            for (int i = 3; i < 6; i++) {
+                symbol2 = connectFourBoard[i][j].getSymbol();
+                if (!(symbol2.equals(symbol))) {
+                    break;
+                }
+            }
+            if (symbol.equals(symbol2)) {
+                return true;
+            }
+            symbol = connectFourBoard[3][j].getSymbol();
+            symbol2 = connectFourBoard[3][j].getSymbol();
+            for (int i = 4; i < 7; i++) {
+                symbol2 = connectFourBoard[i][j].getSymbol();
+                if (!(symbol2.equals(symbol))) {
+                    break;
+                }
+            }
+            if (symbol.equals(symbol2)) {
+                return true;
+            }
+        }
+        for (int i = 0; i < 3; i++) {
+            String symbol = connectFourBoard[i][0].getSymbol();
+            String symbol2 = connectFourBoard[i][0].getSymbol();
+            int x = 1;
+            for (int j = 1; j < 4; j++) {
+                symbol2 = connectFourBoard[i + x][j].getSymbol();
+                if (!(symbol2.equals(symbol))) {
+                    break;
+                }
+                x++;
+            }
+            if (symbol.equals(symbol2)) {
+                return true;
+            }
+            symbol = connectFourBoard[i][1].getSymbol();
+            symbol2 = connectFourBoard[i][1].getSymbol();
+            x = 1;
+            for (int j = 2; j < 5; j++) {
+                symbol2 = connectFourBoard[i + x][j].getSymbol();
+                if (!(symbol2.equals(symbol))) {
+                    break;
+                }
+                x++;
+            }
+            if (symbol.equals(symbol2)) {
+                return true;
+            }
+            symbol = connectFourBoard[i][2].getSymbol();
+            symbol2 = connectFourBoard[i][2].getSymbol();
+            x = 1;
+            for (int j = 3; j < 6; j++) {
+                symbol2 = connectFourBoard[i + x][j].getSymbol();
+                if (!(symbol2.equals(symbol))) {
+                    break;
+                }
+                x++;
+            }
+            if (symbol.equals(symbol2)) {
+                return true;
+            }
+            symbol = connectFourBoard[i][3].getSymbol();
+            symbol2 = connectFourBoard[i][3].getSymbol();
+            x = 1;
+            for (int j = 4; j < 7; j++) {
+                symbol2 = connectFourBoard[i + x][j].getSymbol();
+                if (!(symbol2.equals(symbol))) {
+                    break;
+                }
+                x++;
+            }
+            if (symbol.equals(symbol2)) {
+                return true;
+            }
+        }
+        for (int i = 5; i > 2; i--) {
+            String symbol = connectFourBoard[i][0].getSymbol();
+            String symbol2 = connectFourBoard[i][0].getSymbol();
+            int x = 1;
+            for (int j = 1; j < 4; j++) {
+                symbol2 = connectFourBoard[i - x][j].getSymbol();
+                if (!(symbol2.equals(symbol))) {
+                    break;
+                }
+                x++;
+            }
+            if (symbol.equals(symbol2)) {
+                return true;
+            }
+            symbol = connectFourBoard[i][1].getSymbol();
+            symbol2 = connectFourBoard[i][1].getSymbol();
+            x = 1;
+            for (int j = 2; j < 5; j++) {
+                symbol2 = connectFourBoard[i - x][j].getSymbol();
+                if (!(symbol2.equals(symbol))) {
+                    break;
+                }
+                x++;
+            }
+            if (symbol.equals(symbol2)) {
+                return true;
+            }
+            symbol = connectFourBoard[i][2].getSymbol();
+            symbol2 = connectFourBoard[i][2].getSymbol();
+            x = 1;
+            for (int j = 3; j < 6; j++) {
+                symbol2 = connectFourBoard[i - x][j].getSymbol();
+                if (!(symbol2.equals(symbol))) {
+                    break;
+                }
+                x++;
+            }
+            if (symbol.equals(symbol2)) {
+                return true;
+            }
+            symbol = connectFourBoard[i][3].getSymbol();
+            symbol2 = connectFourBoard[i][3].getSymbol();
+            x = 1;
+            for (int j = 4; j < 7; j++) {
+                symbol2 = connectFourBoard[i - x][j].getSymbol();
+                if (!(symbol2.equals(symbol))) {
+                    break;
+                }
+                x++;
+            }
+            if (symbol.equals(symbol2)) {
+                return true;
+            }
+        }
+        return false;
     }
     private void play() {
         boolean gameOver = false;
