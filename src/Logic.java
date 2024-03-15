@@ -32,6 +32,7 @@ public class Logic {
         play();
     }
     private boolean checkIfOver() {
+        // horizontal check
         for (int i = 0; i < connectFourBoard.length; i++) {
             String symbol = connectFourBoard[i][0].getSymbol();
             String symbol2 = connectFourBoard[i][0].getSymbol();
@@ -41,7 +42,7 @@ public class Logic {
                     break;
                 }
             }
-            if (symbol.equals(symbol2)) {
+            if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
             symbol = connectFourBoard[i][1].getSymbol();
@@ -52,7 +53,7 @@ public class Logic {
                     break;
                 }
             }
-            if (symbol.equals(symbol2)) {
+            if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
             symbol = connectFourBoard[i][2].getSymbol();
@@ -63,7 +64,7 @@ public class Logic {
                     break;
                 }
             }
-            if (symbol.equals(symbol2)) {
+            if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
             symbol = connectFourBoard[i][3].getSymbol();
@@ -74,10 +75,11 @@ public class Logic {
                     break;
                 }
             }
-            if (symbol.equals(symbol2)) {
+            if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
         }
+        // vertical check
         for (int j = 0; j < connectFourBoard[0].length; j++) {
             String symbol = connectFourBoard[0][j].getSymbol();
             String symbol2 = connectFourBoard[0][j].getSymbol();
@@ -87,7 +89,7 @@ public class Logic {
                     break;
                 }
             }
-            if (symbol.equals(symbol2)) {
+            if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
             symbol = connectFourBoard[1][j].getSymbol();
@@ -98,7 +100,7 @@ public class Logic {
                     break;
                 }
             }
-            if (symbol.equals(symbol2)) {
+            if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
             symbol = connectFourBoard[2][j].getSymbol();
@@ -109,21 +111,11 @@ public class Logic {
                     break;
                 }
             }
-            if (symbol.equals(symbol2)) {
-                return true;
-            }
-            symbol = connectFourBoard[3][j].getSymbol();
-            symbol2 = connectFourBoard[3][j].getSymbol();
-            for (int i = 4; i < 7; i++) {
-                symbol2 = connectFourBoard[i][j].getSymbol();
-                if (!(symbol2.equals(symbol))) {
-                    break;
-                }
-            }
-            if (symbol.equals(symbol2)) {
+            if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
         }
+        // diagonal check
         for (int i = 0; i < 3; i++) {
             String symbol = connectFourBoard[i][0].getSymbol();
             String symbol2 = connectFourBoard[i][0].getSymbol();
@@ -135,7 +127,7 @@ public class Logic {
                 }
                 x++;
             }
-            if (symbol.equals(symbol2)) {
+            if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
             symbol = connectFourBoard[i][1].getSymbol();
@@ -148,7 +140,7 @@ public class Logic {
                 }
                 x++;
             }
-            if (symbol.equals(symbol2)) {
+            if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
             symbol = connectFourBoard[i][2].getSymbol();
@@ -161,7 +153,7 @@ public class Logic {
                 }
                 x++;
             }
-            if (symbol.equals(symbol2)) {
+            if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
             symbol = connectFourBoard[i][3].getSymbol();
@@ -174,7 +166,7 @@ public class Logic {
                 }
                 x++;
             }
-            if (symbol.equals(symbol2)) {
+            if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
         }
@@ -189,7 +181,7 @@ public class Logic {
                 }
                 x++;
             }
-            if (symbol.equals(symbol2)) {
+            if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
             symbol = connectFourBoard[i][1].getSymbol();
@@ -202,7 +194,7 @@ public class Logic {
                 }
                 x++;
             }
-            if (symbol.equals(symbol2)) {
+            if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
             symbol = connectFourBoard[i][2].getSymbol();
@@ -215,7 +207,7 @@ public class Logic {
                 }
                 x++;
             }
-            if (symbol.equals(symbol2)) {
+            if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
             symbol = connectFourBoard[i][3].getSymbol();
@@ -228,7 +220,7 @@ public class Logic {
                 }
                 x++;
             }
-            if (symbol.equals(symbol2)) {
+            if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
         }
@@ -289,10 +281,13 @@ public class Logic {
                     System.out.println("Invalid coordinates");
                 }
             }
+            if (checkIfOver()) {
+                gameOver = true;
+            }
         }
         System.out.println("Do you want to play again?(y/n)");
         String answer = myScanner.nextLine();
-        if(answer.equals("y")) {
+        if (answer.equals("y")) {
             welcomeUser();
         } else {
             System.out.println("You quit the game\nBye!!!!");
