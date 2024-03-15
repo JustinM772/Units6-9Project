@@ -41,6 +41,30 @@ public class Logic {
             if (symbol.equals(symbol2)) {
                 return true;
             }
+            symbol = connectFourBoard[i][1].getSymbol();
+            symbol2 = connectFourBoard[i][1].getSymbol();
+            for (int j = 2; j < 5; j++) {
+                symbol2 = connectFourBoard[i][j].getSymbol();
+            }
+            if (symbol.equals(symbol2)) {
+                return true;
+            }
+            symbol = connectFourBoard[i][2].getSymbol();
+            symbol2 = connectFourBoard[i][2].getSymbol();
+            for (int j = 3; j < 6; j++) {
+                symbol2 = connectFourBoard[i][j].getSymbol();
+            }
+            if (symbol.equals(symbol2)) {
+                return true;
+            }
+            symbol = connectFourBoard[i][3].getSymbol();
+            symbol2 = connectFourBoard[i][3].getSymbol();
+            for (int j = 4; j < 7; j++) {
+                symbol2 = connectFourBoard[i][j].getSymbol();
+            }
+            if (symbol.equals(symbol2)) {
+                return true;
+            }
         }
     }
     private void play() {
@@ -61,10 +85,12 @@ public class Logic {
                         if (connectFourBoard[row + 1][col].getSymbol().equals("⬜")) {
                             System.out.println("Invalid coordinates");
                         } else {
-                            ;
+                            Red r = new Red(row, col);
+                            connectFourBoard[row][col] = r;
                         }
                     } else {
-                        ;
+                        Red r = new Red(row, col);
+                        connectFourBoard[row][col] = r;;
                     }
                 } else {
                     System.out.println("Invalid coordinates");
@@ -81,10 +107,12 @@ public class Logic {
                         if (connectFourBoard[row + 1][col].getSymbol().equals("⬜")) {
                             System.out.println("Invalid coordinates");
                         } else {
-                            ;
+                            Yellow y = new Yellow(row, col);
+                            connectFourBoard[row][col] = y;
                         }
                     } else {
-                        ;
+                        Yellow y = new Yellow(row, col);
+                        connectFourBoard[row][col] = y;
                     }
                 } else {
                     System.out.println("Invalid coordinates");
