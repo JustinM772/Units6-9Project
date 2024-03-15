@@ -21,7 +21,7 @@ public class Logic {
     public void printConnectFourBoard() {
         for (int i = 0; i < connectFourBoard.length; i++) {
             for (int j = 0; j < connectFourBoard[0].length; j++) {
-                System.out.print(connectFourBoard[i][j]);
+                System.out.print(connectFourBoard[i][j].getSymbol());
             }
             System.out.println();
         }
@@ -29,6 +29,7 @@ public class Logic {
     private void welcomeUser() {
         System.out.println("Welcome to Connect 4!");
         createEmptyBoard();
+        play();
     }
     private boolean checkIfOver() {
         boolean over = false;
@@ -80,9 +81,9 @@ public class Logic {
                 System.out.print("Enter column number: ");
                 int col = myScanner.nextInt();
                 myScanner.nextLine();
-                if ((row > 0 && row < 6) && (col > 0 && col < 7) && connectFourBoard[row][col].getSymbol().equals("⬜")) {
+                if ((row > 0 && row < 6) && (col > 0 && col < 7) && connectFourBoard[row][col].getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
                     if (row != 5) {
-                        if (connectFourBoard[row + 1][col].getSymbol().equals("⬜")) {
+                        if (connectFourBoard[row + 1][col].getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
                             System.out.println("Invalid coordinates");
                         } else {
                             Red r = new Red(row, col);
@@ -102,9 +103,9 @@ public class Logic {
                 System.out.print("Enter column number: ");
                 int col = myScanner.nextInt();
                 myScanner.nextLine();
-                if ((row > 0 && row < 6) && (col > 0 && col < 7) && connectFourBoard[row][col].getSymbol().equals("⬜")) {
+                if ((row > 0 && row < 6) && (col > 0 && col < 7) && connectFourBoard[row][col].getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
                     if (row != 5) {
-                        if (connectFourBoard[row + 1][col].getSymbol().equals("⬜")) {
+                        if (connectFourBoard[row + 1][col].getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
                             System.out.println("Invalid coordinates");
                         } else {
                             Yellow y = new Yellow(row, col);
