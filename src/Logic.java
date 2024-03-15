@@ -123,8 +123,13 @@ public class Logic {
                     System.out.println("Invalid coordinates");
                 }
             }
-
         }
-
+        System.out.println("Do you want to play again?(y/n)");
+        String answer = myScanner.nextLine();
+        if(answer.equals("y")) {
+            welcomeUser();
+        } else {
+            System.out.println("You quit the game\nBye!!!!");
+        }
     }
 }
