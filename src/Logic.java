@@ -76,44 +76,48 @@ public class Logic {
             System.out.println("Player moving now: " + turn);
             if (turn.equals("red")) {
                 System.out.print("Enter row number: ");
-                int row = myScanner.nextInt();
+                int row = myScanner.nextInt() - 1;
                 myScanner.nextLine();
                 System.out.print("Enter column number: ");
-                int col = myScanner.nextInt();
+                int col = myScanner.nextInt() - 1;
                 myScanner.nextLine();
-                if ((row > 0 && row < 6) && (col > 0 && col < 7) && connectFourBoard[row][col].getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
+                if ((row >= 0 && row < 6) && (col >= 0 && col < 7) && connectFourBoard[row][col].getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
                     if (row != 5) {
                         if (connectFourBoard[row + 1][col].getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
                             System.out.println("Invalid coordinates");
                         } else {
                             Red r = new Red(row, col);
                             connectFourBoard[row][col] = r;
+                            turn = "yellow";
                         }
                     } else {
                         Red r = new Red(row, col);
                         connectFourBoard[row][col] = r;;
+                        turn = "yellow";
                     }
                 } else {
                     System.out.println("Invalid coordinates");
                 }
             } else {
                 System.out.print("Enter row number: ");
-                int row = myScanner.nextInt();
+                int row = myScanner.nextInt() - 1;
                 myScanner.nextLine();
                 System.out.print("Enter column number: ");
-                int col = myScanner.nextInt();
+                int col = myScanner.nextInt() - 1;
                 myScanner.nextLine();
-                if ((row > 0 && row < 6) && (col > 0 && col < 7) && connectFourBoard[row][col].getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
+                if ((row >= 0 && row < 6) && (col >= 0 && col < 7) && connectFourBoard[row][col].getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
                     if (row != 5) {
                         if (connectFourBoard[row + 1][col].getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
                             System.out.println("Invalid coordinates");
                         } else {
                             Yellow y = new Yellow(row, col);
                             connectFourBoard[row][col] = y;
+                            turn = "red";
                         }
                     } else {
                         Yellow y = new Yellow(row, col);
                         connectFourBoard[row][col] = y;
+                        turn = "red";
                     }
                 } else {
                     System.out.println("Invalid coordinates");
