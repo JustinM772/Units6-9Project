@@ -226,6 +226,17 @@ public class Logic {
         }
         return false;
     }
+    public boolean checkIfTie() {
+        String currentSymbol = "\u001B[44m ⚫ \u001B[0m";
+        for (Spaces[] r : connectFourBoard) {
+            for (Spaces c : r) {
+                if (c.getSymbol().equals(currentSymbol)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     private void play() {
         boolean gameOver = false;
         String turn = "red";
@@ -284,6 +295,19 @@ public class Logic {
             if (checkIfOver()) {
                 gameOver = true;
                 printConnectFourBoard();
+            }
+            if (checkIfTie()) {
+                gameOver = true;
+                printConnectFourBoard();
+            }
+        }
+        if (checkIfTie()) {
+            System.out.println("It's a tie");
+        } else {
+            if (turn.equals("red")) {
+                System.out.println("Yellow wins");
+            } else {
+                System.out.println("Red wins");
             }
         }
         System.out.println("Do you want to play again?(y/n)");
