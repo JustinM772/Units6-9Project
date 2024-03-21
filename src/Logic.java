@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Logic {
     private Spaces[][] connectFourBoard;
-    private Scanner myScanner;
+    final private Scanner myScanner;
     public Logic() {
         myScanner = new Scanner(System.in);
     }
@@ -19,9 +19,9 @@ public class Logic {
     }
 
     private void printConnectFourBoard() {
-        for (int i = 0; i < connectFourBoard.length; i++) {
+        for (Spaces[] spaces : connectFourBoard) {
             for (int j = 0; j < connectFourBoard[0].length; j++) {
-                System.out.print(connectFourBoard[i][j].getSymbol());
+                System.out.print(spaces[j].getSymbol());
             }
             System.out.println();
         }
@@ -33,11 +33,11 @@ public class Logic {
     }
     private boolean checkIfOver() {
         // horizontal check
-        for (int i = 0; i < connectFourBoard.length; i++) {
-            String symbol = connectFourBoard[i][0].getSymbol();
-            String symbol2 = connectFourBoard[i][0].getSymbol();
+        for (Spaces[] spaces : connectFourBoard) {
+            String symbol = spaces[0].getSymbol();
+            String symbol2 = spaces[0].getSymbol();
             for (int j = 1; j < 4; j++) {
-                symbol2 = connectFourBoard[i][j].getSymbol();
+                symbol2 = spaces[j].getSymbol();
                 if (!(symbol2.equals(symbol))) {
                     break;
                 }
@@ -45,10 +45,10 @@ public class Logic {
             if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
-            symbol = connectFourBoard[i][1].getSymbol();
-            symbol2 = connectFourBoard[i][1].getSymbol();
+            symbol = spaces[1].getSymbol();
+            symbol2 = spaces[1].getSymbol();
             for (int j = 2; j < 5; j++) {
-                symbol2 = connectFourBoard[i][j].getSymbol();
+                symbol2 = spaces[j].getSymbol();
                 if (!(symbol2.equals(symbol))) {
                     break;
                 }
@@ -56,10 +56,10 @@ public class Logic {
             if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
-            symbol = connectFourBoard[i][2].getSymbol();
-            symbol2 = connectFourBoard[i][2].getSymbol();
+            symbol = spaces[2].getSymbol();
+            symbol2 = spaces[2].getSymbol();
             for (int j = 3; j < 6; j++) {
-                symbol2 = connectFourBoard[i][j].getSymbol();
+                symbol2 = spaces[j].getSymbol();
                 if (!(symbol2.equals(symbol))) {
                     break;
                 }
@@ -67,10 +67,10 @@ public class Logic {
             if (symbol.equals(symbol2) && !(symbol.equals("\u001B[44m ⚫ \u001B[0m"))) {
                 return true;
             }
-            symbol = connectFourBoard[i][3].getSymbol();
-            symbol2 = connectFourBoard[i][3].getSymbol();
+            symbol = spaces[3].getSymbol();
+            symbol2 = spaces[3].getSymbol();
             for (int j = 4; j < 7; j++) {
-                symbol2 = connectFourBoard[i][j].getSymbol();
+                symbol2 = spaces[j].getSymbol();
                 if (!(symbol2.equals(symbol))) {
                     break;
                 }
@@ -237,60 +237,41 @@ public class Logic {
         }
         return true;
     }
+
+    public int findRow(int col) {
+        if (col < 0 || col > 7) {
+            return -1;
+        }
+        for (int i = connectFourBoard.length - 1; i >= 0; i--) {
+            if (connectFourBoard[i][col].getClass().equals(Spaces.class) ) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     private void play() {
         boolean gameOver = false;
         String turn = "red";
         while (!(gameOver)) {
             printConnectFourBoard();
             System.out.println("Player moving now: " + turn);
-            if (turn.equals("red")) {
-                System.out.print("Enter row number: ");
-                int row = myScanner.nextInt() - 1;
-                myScanner.nextLine();
-                System.out.print("Enter column number: ");
-                int col = myScanner.nextInt() - 1;
-                myScanner.nextLine();
-                if ((row >= 0 && row < 6) && (col >= 0 && col < 7) && connectFourBoard[row][col].getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
-                    if (row != 5) {
-                        if (connectFourBoard[row + 1][col].getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
-                            System.out.println("Invalid coordinates");
-                        } else {
-                            Red r = new Red(row, col);
-                            connectFourBoard[row][col] = r;
-                            turn = "yellow";
-                        }
-                    } else {
-                        Red r = new Red(row, col);
-                        connectFourBoard[row][col] = r;;
-                        turn = "yellow";
-                    }
+            System.out.print("Enter column number: ");
+            int col = myScanner.nextInt() - 1;
+            myScanner.nextLine();
+            int row = findRow(col);
+            if (row != -1 && connectFourBoard[row][col].getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
+                if (turn.equals("red")) {
+                    Red r = new Red(row, col);
+                    connectFourBoard[row][col] = r;
+                    turn = "yellow";
                 } else {
-                    System.out.println("Invalid coordinates");
+                    Yellow y = new Yellow(row, col);
+                    connectFourBoard[row][col] = y;
+                    turn = "red";
                 }
             } else {
-                System.out.print("Enter row number: ");
-                int row = myScanner.nextInt() - 1;
-                myScanner.nextLine();
-                System.out.print("Enter column number: ");
-                int col = myScanner.nextInt() - 1;
-                myScanner.nextLine();
-                if ((row >= 0 && row < 6) && (col >= 0 && col < 7) && connectFourBoard[row][col].getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
-                    if (row != 5) {
-                        if (connectFourBoard[row + 1][col].getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
-                            System.out.println("Invalid coordinates");
-                        } else {
-                            Yellow y = new Yellow(row, col);
-                            connectFourBoard[row][col] = y;
-                            turn = "red";
-                        }
-                    } else {
-                        Yellow y = new Yellow(row, col);
-                        connectFourBoard[row][col] = y;
-                        turn = "red";
-                    }
-                } else {
-                    System.out.println("Invalid coordinates");
-                }
+                System.out.println("Invalid coordinates");
             }
             if (checkIfOver()) {
                 gameOver = true;
