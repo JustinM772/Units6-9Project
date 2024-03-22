@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 public class Logic {
     private Spaces[][] connectFourBoard;
@@ -235,12 +237,24 @@ public class Logic {
         return false;
     }
     public boolean checkIfTie() {
+        /*
         String currentSymbol = "\u001B[44m ⚫ \u001B[0m";
         for (Spaces[] r : connectFourBoard) {
             for (Spaces c : r) {
                 if (c.getSymbol().equals(currentSymbol)) {
                     return false;
                 }
+            }
+        }
+        return true;
+        */
+        ArrayList<Spaces> list = new ArrayList<>();
+        for (Spaces[] r : connectFourBoard) {
+            list.addAll(Arrays.asList(r));
+        }
+        for (Spaces s : list) {
+            if (s.getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
+                return false;
             }
         }
         return true;
