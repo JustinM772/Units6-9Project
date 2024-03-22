@@ -8,7 +8,6 @@ public class Logic {
     public void start() {
         welcomeUser();
     }
-
     private void createEmptyBoard() {
         connectFourBoard = new Spaces[6][7];
         for(int i = 0; i < connectFourBoard.length; i++) {
@@ -19,12 +18,21 @@ public class Logic {
     }
 
     private void printConnectFourBoard() {
+        int[] columnList = {1, 2, 3, 4, 5, 6, 7};
         for (Spaces[] spaces : connectFourBoard) {
             for (int j = 0; j < connectFourBoard[0].length; j++) {
                 System.out.print(spaces[j].getSymbol());
             }
             System.out.println();
         }
+        System.out.print("  ");
+        System.out.print(columnList[0] + "   ");
+        System.out.print(columnList[1] + "   ");
+        System.out.print(columnList[2] + "   ");
+        System.out.print(columnList[3] + "    ");
+        System.out.print(columnList[4] + "   ");
+        System.out.print(columnList[5] + "   ");
+        System.out.println(columnList[6] + "  ");
     }
     private void welcomeUser() {
         System.out.println("Welcome to Connect 4!");
