@@ -237,20 +237,11 @@ public class Logic {
         return false;
     }
     public boolean checkIfTie() {
-        /*
-        String currentSymbol = "\u001B[44m ⚫ \u001B[0m";
-        for (Spaces[] r : connectFourBoard) {
-            for (Spaces c : r) {
-                if (c.getSymbol().equals(currentSymbol)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-        */
         ArrayList<Spaces> list = new ArrayList<>();
         for (Spaces[] r : connectFourBoard) {
-            list.addAll(Arrays.asList(r));
+            for (Spaces c : r) {
+                list.add(c);
+            }
         }
         for (Spaces s : list) {
             if (s.getSymbol().equals("\u001B[44m ⚫ \u001B[0m")) {
